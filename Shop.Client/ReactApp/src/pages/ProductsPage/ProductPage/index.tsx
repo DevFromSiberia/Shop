@@ -1,6 +1,6 @@
 import { IProduct } from '@Shared/types'
 import { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import placeholder from '../../../img/product-placeholder.png'
 import axios from 'axios'
 import { URL } from '../../../const'
@@ -75,14 +75,14 @@ function ProductPage({ products }: Props) {
           <ul className="similarList">
             {similarProducts?.length ? (
               similarProducts.map((similarProduct) => (
-                <a key={similarProduct.id} href={`/:${similarProduct.id}`}>
-                  <li className="similarProduct">
+                <li className="similarProduct" key={similarProduct.id}>
+                  <Link to={`/:${similarProduct.id}`}>
                     <h5 className="productTitle">{similarProduct.title}</h5>
                     <div className="productPrice">
                       Цена: {similarProduct.price}
                     </div>
-                  </li>
-                </a>
+                  </Link>
+                </li>
               ))
             ) : (
               <div className="empty">Похожие товары отсутствуют</div>
