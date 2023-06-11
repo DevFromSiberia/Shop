@@ -2,6 +2,7 @@ body {
   margin: 0;
   font-family: 'Roboto', sans-serif;
   background-color: #b4434379;
+  padding-bottom: 50px;
 }
 
 .container {

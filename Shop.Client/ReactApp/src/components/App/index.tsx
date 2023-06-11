@@ -3,7 +3,7 @@ import Header from '../Header'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import MainPage from '../../pages/MainPage'
 import ProductsPage from '../../pages/ProductsPage'
-import ProductPage from '../../pages/ProductPage'
+import ProductPage from '../../pages/ProductsPage/ProductPage'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { URL } from '../../const'
@@ -52,7 +52,7 @@ function App() {
               path="/products-list"
               element={<ProductsPage products={products} />}
             />
-            <Route path="/:id" element={<ProductPage />} />
+            <Route path="/:id" element={<ProductPage products={products} />} />
           </Routes>
         </div>
       </div>

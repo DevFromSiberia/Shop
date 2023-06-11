@@ -14,14 +14,14 @@ function ProductsPage({ products }: Props) {
       <ul className="productsList">
         {products.map((product) => (
           <li key={product.id} className="product">
-            <Link to={product.id}>
+            <Link to={`/:${product.id}`}>
               <h3 className="productTitle">{product.title}</h3>
+              <img
+                className="productImg"
+                src={product.thumbnail ? product.thumbnail.url : placeholder}
+                alt="thumbnail"
+              />
             </Link>
-            <img
-              className="productImg"
-              src={product.thumbnail ? product.thumbnail.url : placeholder}
-              alt="thumbnail"
-            />
             <div className="productPrice">{product.price}</div>
             <div className="productComments">
               {product.comments
