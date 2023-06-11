@@ -1,4 +1,4 @@
-import express, { Express, NextFunction, Response, Request } from 'express'
+import express, { Express, Response, Request } from 'express'
 import path from 'path'
 
 export default function (): Express {

@@ -1,0 +1,33 @@
+.productsList {
+  display: grid;
+  max-width: 1200px;
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 30px;
+  padding-bottom: 50px;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 1px solid #ffe569;
+  padding: 20px;
+}
+
+.productTitle,
+.productPrice {
+  font-size: 22px;
+  color: #db005b;
+  margin-bottom: 20px;
+}
+
+.productImg {
+  max-width: 150px;
+  margin-bottom: 20px;
+}
+
+.productComments {
+  color: #db005b;
+  text-transform: uppercase;
+}

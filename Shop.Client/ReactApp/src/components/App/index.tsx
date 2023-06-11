@@ -3,10 +3,11 @@ import Header from '../Header'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import MainPage from '../../pages/MainPage'
 import ProductsPage from '../../pages/ProductsPage'
+import ProductPage from '../../pages/ProductPage'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { URL } from '../../const'
-import { IProduct } from '../../../../../Shared/types'
+import { IProduct } from '@Shared/types'
 
 function App() {
   const [products, setProducts] = useState<IProduct[]>([])
@@ -18,9 +19,20 @@ function App() {
   }
 
   useEffect(() => {
-    const req = axios.get(`${URL}/api/products`)
-    req.then((data) => setProducts(data.data))
+    const reqProducts = async () => await axios.get(`${URL}/api/products`)
+    const data = reqProducts()
+    let resultArr: IProduct[] = []
+    data.then((res) => {
+      resultArr = res.data.map(async (dataProduct: IProduct) => {
+        const product = await axios.get<{}, { data: IProduct }>(
+          `${URL}/api/products/${dataProduct.id}`
+        )
+        return product.data
+      })
+      Promise.all(resultArr).then((res) => setProducts(res))
+    })
   }, [])
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -36,7 +48,11 @@ function App() {
                 />
               }
             />
-            <Route path="/products-list" element={<ProductsPage />} />
+            <Route
+              path="/products-list"
+              element={<ProductsPage products={products} />}
+            />
+            <Route path="/:id" element={<ProductPage />} />
           </Routes>
         </div>
       </div>
