@@ -31,7 +31,7 @@ function ProductPage({ products }: Props) {
       .then((res) => {
         setSimilarProducts(res.data)
       })
-  }, [])
+  }, [product])
 
   return (
     <>
